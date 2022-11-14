@@ -8,14 +8,10 @@
              x:Class="Github.Mobile.MainPage">
     <views:BaseContentPage.Content>
         <Grid>
-            <ActivityIndicator IsVisible="{Binding IsLoading}"
-                               VerticalOptions="StartAndExpand"
-                               HorizontalOptions="StartAndExpand"/>
 
             <CollectionView VerticalOptions="StartAndExpand"
                         HorizontalOptions="FillAndExpand"
                         Margin="10"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"
                         ItemsSource="{Binding GithubUserProfileModels}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="10"/>
@@ -102,6 +98,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <ActivityIndicator IsVisible="{Binding IsLoading}"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
+
         </Grid>
     </views:BaseContentPage.Content>
 </views:BaseContentPage>
