@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Github.Mobile.Views"
+             xmlns:viewModels="clr-namespace:Github.Mobile.ViewModels"
+             xmlns:models="clr-namespace:Github.Mobile.Models"
+             x:DataType="viewModels:MainViewModel"
+             x:Class="Github.Mobile.MainPage">
+    <views:BaseContentPage.Content>
+        <Grid>
+            <ActivityIndicator IsVisible="{Binding IsLoading}"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="StartAndExpand"/>
+
+            <CollectionView VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="10"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"
+                        ItemsSource="{Binding GithubUserProfileModels}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GithubUserProfileModel">
+                        <Frame HasShadow="True"
+                           BorderColor="LightGray"
+                           CornerRadius="10"
+                           Padding="15">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="StartAndExpand"
+                                     Orientation="Vertical"
+                                     Spacing="5">
+                                
+                                <Image Source="{Binding AvatarUrl}"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="CenterAndExpand"/>
+
+                                <Label Text="{Binding Name}"
+                                   FontSize="15"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Start"/>
+
+                                <Label FontSize="12"
+                                   TextColor="DarkSlateGray"
+                                   HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Login: "/>
+                                            <Span Text="{Binding Login}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label FontSize="10"
+                                   TextColor="DimGray"
+                                   HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Company: "/>
+                                            <Span Text="{Binding Company}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label FontSize="10"
+                                   TextColor="DimGray"
+                                   HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Number Of Followers: "/>
+                                            <Span Text="{Binding NumberOfFollowers}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label FontSize="10"
+                                   TextColor="DimGray"
+                                   HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Number Of Public Repositories: "/>
+                                            <Span Text="{Binding NumberOfPublicRepositories}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label FontSize="10"
+                                   TextColor="DimGray"
+                                   HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Avg of Followers per Public Repositories: "/>
+                                            <Span Text="{Binding AverageNumberOfFollowersPerRepository}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </views:BaseContentPage.Content>
+</views:BaseContentPage>
