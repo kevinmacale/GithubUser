@@ -15,7 +15,7 @@ namespace Github.Mobile.Services.Api
 
     public class GithubUserApiClient : BaseApiClient, IGithubUserApiClient
     {
-        private readonly string _getUsersUrl = "https://192.168.100.2:7019/GithubUser";
+        private readonly string _getUsersUrl = "https://192.168.100.14:7019/GithubUser";
 
         public async Task<GetGithubUsersResponse> GetUsers(CancellationToken cancellationToken = default)
         {
